@@ -54,6 +54,7 @@ pillar[0]={
 
 // makes the pictures on the canvas
 function draw(){
+   
    ctx.drawImage(background,0,0) // makes background in canvas
    for(var i = 0; i < pillar.length; i++){
       constant = topPillar.height+gap;
