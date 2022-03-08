@@ -16,16 +16,15 @@ topPillar.src = "images/woodPillarTop.png";
 botPillar.src = "images/woodPillarBot.jpg";
 
 
-
-const gap = 70; // space between pillars 
+const gap = 150; // space between pillars 
 var constant;
 
 var fX = 10 ;// fish x axis
 var fY = 150; // fish y axis 
 
-const gravity = 1.5;// 
+var gravity = 2;// 
 
-const score = 0; // score to be kept
+var score = 0; // score to be kept
 
 
 // audios 
@@ -37,25 +36,26 @@ hit.src = "sounds/dying sound.mp3";
 swim.src = "sounds/Jump.mp3";
 scor.src = "sounds/score.mp3";
 
-document.addEventListener("click", moveUp); // event listener for click/jump/swim
+cvs.addEventListener("click", moveUp); // event listener for click/jump/swim
 
 function moveUp(){
 
-fY -=30;
+fY -=40;
 swim.play();
 } // jump feature with swim audio 
 
-const pillar = []; // defines pillar
+var pillar =[]; // defines pillar
 
-pillar[0]={
-   x : cvs.width,
+pillar[0]= {
+   x : cvs.width ,
    y : 0
 };
 
 // makes the pictures on the canvas
 function draw(){
    
-   ctx.drawImage(background,0,0) // makes background in canvas
+   ctx.drawImage(background,0,0);// makes background in canvas
+   
    for(var i = 0; i < pillar.length; i++){
       constant = topPillar.height+gap;
       ctx.drawImage(topPillar,pillar[i].x,pillar[i].y);
@@ -70,26 +70,26 @@ function draw(){
          }); // makes new pillars to go through 
       }
 
-
-   } 
-   if( fX + fish.width >= pillar[i].x && fX <= pillar[i] + topPillar && (fY <= pillar[i].y +topPillar || fY + fish.height >= pillar
-      [i].y + constant)|| fY + fish.height >= cvs.height - floor.height){
+   if( fX + fish.width >= pillar[i].x && fX <= pillar[i].x + topPillar.width && (fY <= pillar[i].y + topPillar.height|| fY + fish.height >= pillar
+      [i].y + constant)|| fY + fish.height >= cvs.height - floor.height){ 
          location.reload(); // reloads when you make impact with pillars
       }
       if( pillar[i].x == 5){
          score++;
-         scor.play();
+      
       }
-
+   }
 
    ctx.drawImage(floor,0,cvs.height-floor.height); // makes the floor on the bottom in canvas
    
    ctx.drawImage(fish,fX,fY);// draws the fish in canvas
    
    fY += gravity;
-   ctx.fillstyle = "#000";
-   ctx.font = "20px Times New Roman";
-   ctx.filltext("Score : " + score, 10 , cvs.height-20);
+   
+   ctx.style = "#000";
+   ctx.font= "30px serif";
+   
+   ctx.fillText("Score:"+score,500,cvs.height-20);
 
    requestAnimationFrame(draw);
 }
