@@ -1,4 +1,4 @@
-const cvs = document.getElementById("c");
+const cvs = document.getElementById("c"); //canvas settings
 const ctx = cvs.getContext("2d");
 
 
@@ -49,17 +49,17 @@ var pillar =[]; // defines pillar
 pillar[0]= {
    x : cvs.width ,
    y : 0
-};
+}; // pillar size
 
-// makes the pictures on the canvas
-function draw(){
+
+function draw(){ // makes the whole game on canvas
    
    ctx.drawImage(background,0,0);// makes background in canvas
    
    for(var i = 0; i < pillar.length; i++){
       constant = topPillar.height+gap;
       ctx.drawImage(topPillar,pillar[i].x,pillar[i].y);
-      ctx.drawImage(botPillar,pillar[i].x,pillar[i].y+constant);
+      ctx.drawImage(botPillar,pillar[i].x,pillar[i].y+constant); // draws the top and bottom  pillar
       
       pillar[i].x--; // moves pillar to the left
 
@@ -74,22 +74,21 @@ function draw(){
       [i].y + constant)|| fY + fish.height >= cvs.height - floor.height){ 
          location.reload(); // reloads when you make impact with pillars
       }
-      if( pillar[i].x == 5){
+   if( pillar[i].x == 5){
          score++;
-      
       }
-   }
+   } // score detection 
+   
 
    ctx.drawImage(floor,0,cvs.height-floor.height); // makes the floor on the bottom in canvas
    
    ctx.drawImage(fish,fX,fY);// draws the fish in canvas
    
-   fY += gravity;
+   fY += gravity;// makes the fish fall 
    
-   ctx.style = "#000";
-   ctx.font= "30px serif";
-   
-   ctx.fillText("Score:"+score,500,cvs.height-20);
+   ctx.style = "#000";// color of the text for score  
+   ctx.font= "30px Serif"; // font size and family
+   ctx.fillText("Score : "+score,10,cvs.height-20); //fills in score and increments once passed through pillars
 
    requestAnimationFrame(draw);
 }
