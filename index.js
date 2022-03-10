@@ -71,11 +71,13 @@ function draw(){ // makes the whole game on canvas
       }
 
    if( fX + fish.width >= pillar[i].x && fX <= pillar[i].x + topPillar.width && (fY <= pillar[i].y + topPillar.height|| fY + fish.height >= pillar
-      [i].y + constant)|| fY + fish.height >= cvs.height - floor.height){ 
+      [i].y + constant)|| fY + fish.height >= cvs.height - floor.height){
+
          location.reload(); // reloads when you make impact with pillars
       }
    if( pillar[i].x == 5){
          score++;
+         scor.play();
       }
    } // score detection 
    
